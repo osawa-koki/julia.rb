@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  mandelbrot:
+    build: .
+    container_name: julia-rb
+    volumes:
+      - .:/app
