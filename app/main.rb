@@ -2,9 +2,9 @@ require 'chunky_png'
 require 'yaml'
 
 # YAMLファイルを読み込む
-config = YAML.load_file('config.yaml')['mandelbrot']
+config = YAML.load_file('config.yaml')['julia']
 
-# マンデルブロ集合の設定を取得する
+# ジュリア集合の設定を取得する
 width = config['width']
 height = config['height']
 x_min = config['x_min']
@@ -15,22 +15,25 @@ max_iterations = config['max_iterations']
 background_color = config['background_color']
 incremental_step = config['incremental_step']
 output = config['output']
+cx = config['cx']
+cy = config['cy']
 
 # 画像の初期化
 png = ChunkyPNG::Image.new(width, height, ChunkyPNG::Color::BLACK)
 
-# マンデルブロ集合の計算
+# ジュリア集合の計算
 (0...width).each do |x|
   (0...height).each do |y|
     # 座標の変換
     zx = x_min + (x_max - x_min) * x / width
     zy = y_min + (y_max - y_min) * y / height
 
-    # マンデルブロ集合の計算
-    z = 0.0
+    # ジュリア集合の計算
+    z = Complex(zx, zy)
+    c = Complex(cx, cy)
     iteration = 0
     while z.abs < 2 && iteration < max_iterations
-      z = z * z + Complex(zx, zy)
+      z = z * z + c
       iteration += 1
     end
 
