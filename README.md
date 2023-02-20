@@ -7,7 +7,7 @@
 ## 実行方法
 
 ```shell
-docker compose up mandelbrot -d [--build]
+docker compose up julia -d [--build]
 ```
 
 設定ファイル(config.yaml)を変更して、ジュリア集合の描写を変更することができます。  
